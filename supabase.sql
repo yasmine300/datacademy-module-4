@@ -12,6 +12,9 @@ create table public.absences (
 -- 2) Activation de la sécurité au niveau des lignes (RLS)
 alter table public.absences enable row level security;
 
+-- Autorise le rôle public (anon) à lire et ajouter, rien d'autre
+grant select, insert on public.absences to anon;
+
 -- 3) Règle : tout visiteur de l'app peut LIRE les absences
 create policy "Lecture publique des absences"
   on public.absences for select
